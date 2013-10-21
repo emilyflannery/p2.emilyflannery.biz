@@ -22,6 +22,7 @@ class base_controller {
 			$this->template 	  = View::instance('_v_template');
 			$this->email_template = View::instance('_v_email');			
 								
+		# Set up global variable called $user which is accessible to all the views
 		# So we can use $user in views			
 			$this->template->set_global('user', $this->user);
 			
