@@ -1,8 +1,28 @@
-<!-- Filename "v_users_profile" reflects "views_controllername_method" -->
-<!-- Ok to use logic IF it's determining whether or how something should display -->
+<img id="logo" src="/images/foodshare.png" />
 
-<?php if(isset($user_name)): ?>
-	<h1>This is the profile for <?=$user_name?></h1>
+<?php if(isset($user)): ?>
+<section class="content">
+	<p>This is <?=$user->first_name;?> <?=$user->last_name;?>'s profile.</p>
+	<p><?=$user->email;?></p>
+</section>
+
 <?php else: ?>
-	<h2>No user has been specified</h1>
+<section class="content">
+	<p>Please <a href="/users/login">log in</a> to view this page.</p>
+</section>
 <?php endif; ?>
+
+
+
+
+<!-- OR TO GET THE SAME RESULTS:
+<?php if($user): ?>
+	<section class="content">
+		<p>This is <?=$user->first_name;?> <?=$user->last_name;?>'s profile.</p>
+	</section>
+
+<?php else: ?>
+	<section class="content">
+		<p>Please <a href="/users/login">log in</a> to view this page.</p>
+	</section>
+<?php endif; ?> -->

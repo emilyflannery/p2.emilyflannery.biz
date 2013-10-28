@@ -2,6 +2,7 @@
 class users_controller extends base_controller {
 
     public function __construct() {
+        # Call the base constructor
         parent::__construct();
     } 
 
@@ -21,28 +22,36 @@ class users_controller extends base_controller {
 
     public function p_signup() {
 
+        // Dump out the results of POST to see what the form submitted
+        # print_r($_POST);
+
         // Store time user was created to DB
         $_POST['created']   = Time::now();
-        // Encrypt pasword and store in DB
-        $_POST['password']  = sha1(PASSWORD_SALT.$_POST['password']); #PASSWORD_SALT = constant, defined in config.php
-        $_POST['token']      = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string()); #taking token salt + user email + random string (then we'll store in database as cookie)
+        $_POST['modified']   = Time::now();
 
-        echo "<pre>";
-        print_r($_POST);
-        echo "</pre>";
+        // Encrypt the password  
+        $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);            
 
-        DB::instance(DB_NAME)->insert_row('users', $_POST);
+        // Create an encrypted token via their email address and a random string
+        $_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string()); 
 
-        // Send them to the login page
+        // Insert this user into the database
+        $user_id = DB::instance(DB_NAME)->insert('users', $_POST);
+
+        // For now, just confirm they've signed up - 
+        // You should eventually make a proper View for this
         Router::redirect('/users/login');
         
     }
 
-    public function login() {
+    public function login($error = NULL) {
         
         # Setup view
         $this->template->content = View::instance('v_users_login');
         $this->template->title   = "Login";
+
+        # Pass data to the view
+        $this->template->content->error = $error;
 
         # Render template
         echo $this->template;
@@ -69,11 +78,13 @@ class users_controller extends base_controller {
         # If we didn't find a matching token in the database, it means login failed
         if(!$token) {
 
-            # Send them back to the login page
-            Router::redirect("/users/login/");
+            # Send them back to the login page with an error message
+            Router::redirect("/users/login/error"); 
 
         # But if we did, login succeeded! 
-        } else {
+        } 
+        # Login passed
+        else {
 
             /* 
             Store this token in a cookie using setcookie()
@@ -84,7 +95,7 @@ class users_controller extends base_controller {
             param 3 = when to expire
             param 4 = the path of the cooke (a single forward slash sets it for the entire domain)
             */
-            setcookie("token", $token, strtotime('+1 year'), '/');
+            setcookie("token", $token, strtotime('+2 weeks'), '/');
 
             # Send them to the main page - or whever you want them to go
             Router::redirect("/");
@@ -114,33 +125,32 @@ class users_controller extends base_controller {
     }
 
 
-    public function profile($user_name = NULL) {
+public function profile($user_name = NULL) {
 
-        //Set up view and define as "content"
-        $this->template->content = View::instance('v_users_profile');
-        $this->template->title = "Profile for ".$user_name;
+    if(!$this->user) {
 
-        $client_files_head = Array(
-            '/css/style.css', 
-            '/css/profile.css'
-            );
-
-        $this->template->client_files_head = Util::load_client_files();
-
-        $client_files_body = Array(
-            '/js/profile.js'
-            );
-
-        //Pass the data to the View
-        $this->template->content->user_name = $user_name;
-
-        //Display the view
-        echo $this->template;
-
-        //Give view access to variable called user_name (gets passed onto URL as one of our parameters)
-        #$view->user_name = $user_name;
-
-        #echo $view;
+        #Router::redirect('/');
+      
     }
+
+    # Setup view
+    $this->template->content = View::instance('v_users_profile');
+
+    # Set page title
+    $this->template->title = "Profile";
+
+    # Use load_client_files to generate the links from the above array
+    $this->template->client_files_head = Utils::load_client_files($client_files_head);  
+    
+    # Use load_client_files to generate the links from the above array
+    $this->template->client_files_body = Utils::load_client_files($client_files_body);  
+
+    # Pass information to the view fragment
+    $this->template->content->user_name = $user_name;
+
+    # Render View
+    echo $this->template;
+
+}
 
 } # end of the class

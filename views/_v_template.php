@@ -25,19 +25,15 @@
 			
 			<!-- If logged in -->
 			<?php if($user): ?>
-
-				<li><a href="/users/create_post">Create a Post</a></li>
+				<li><a href="/posts/add">Create a Post</a></li>
 				<li><a href="/users/user_list">Users</a></li>
-				<li><a href="/users/posts">Blogroll</a></li>
+				<li><a href="/posts/index">Blogroll</a></li>
 				<li><a href="/users/profile">Profile</a></li>
 				<li><a href="/users/logout">Log Out</a></li>
-
 			<!-- If not logged in -->
 			<?php else: ?>
-				
 				<li><a href="/users/signup">Sign Up</a></li>
 				<li><a href="/users/login">Log In</a></li>
-
 			<?php endif; ?>
 
 		</ul>
