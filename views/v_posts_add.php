@@ -1,7 +1,11 @@
-<form method="post" action="/posts/p_add">
+<section class="content">
 
-	<textarea name="content"></textarea> <!-- make sure name corresponds with database name -->
+	<form method="post" action="/posts/p_add">
 
-	<input type="Submit" value="Add new post">
+		<textarea name="content"></textarea> <!-- make sure name corresponds with database name -->
 
-</form>
+		<input type="Submit" value="Add new post">
+
+	</form>
+
+</section>

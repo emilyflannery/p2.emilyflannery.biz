@@ -2,16 +2,17 @@
 
 <?php if($user): ?>
 <section class="content">
+
 	<p id="welcome">
 	Welcome, <?=$user->first_name;?>.<br />
 	What will you bring to the table today?
 	</p>
 
-	<!-- <pre>
+	<pre>
 	<?php
 	print_r($user);
 	?>
-	</pre> -->
+	</pre>
 
 </section>
 

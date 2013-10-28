@@ -14,6 +14,7 @@ class users_controller extends base_controller {
 
         // Set up the view
         $this->template->content = View::instance('v_users_signup');
+        $this->template->title   = "Sign Up";
 
         // Render the view
         echo $this->template;
@@ -38,13 +39,13 @@ class users_controller extends base_controller {
         // Insert this user into the database
         $user_id = DB::instance(DB_NAME)->insert('users', $_POST);
 
-        // For now, just confirm they've signed up - 
-        // You should eventually make a proper View for this
-        Router::redirect('/users/login');
+            // Send them back to the login page with a success message
+            Router::redirect("/users/login/success"); 
+
         
     }
 
-    public function login($error = NULL) {
+    public function login($error = NULL, $success = NULL) {
         
         # Setup view
         $this->template->content = View::instance('v_users_login');
@@ -52,6 +53,7 @@ class users_controller extends base_controller {
 
         # Pass data to the view
         $this->template->content->error = $error;
+        $this->template->content->success = $success;
 
         # Render template
         echo $this->template;
@@ -139,6 +141,27 @@ public function profile($user_name = NULL) {
     # Set page title
     $this->template->title = "Profile";
 
+        # Query
+        $q = 'SELECT 
+                posts.content,
+                posts.created,
+                posts.user_id AS post_user_id,
+                users_users.user_id AS follower_id,
+                users.first_name,
+                users.last_name
+            FROM posts
+            INNER JOIN users_users 
+                ON posts.user_id = users_users.user_id_followed
+            INNER JOIN users 
+                ON posts.user_id = users.user_id
+            WHERE users_users.user_id = '.$this->user->user_id;
+
+    # Run the query, store the results in the variable $posts
+    $posts = DB::instance(DB_NAME)->select_rows($q);
+
+    # Pass data to the View
+    $this->template->content->posts = $posts;
+
     # Use load_client_files to generate the links from the above array
     $this->template->client_files_head = Utils::load_client_files($client_files_head);  
     
@@ -151,6 +174,6 @@ public function profile($user_name = NULL) {
     # Render View
     echo $this->template;
 
-}
+    }
 
 } # end of the class
