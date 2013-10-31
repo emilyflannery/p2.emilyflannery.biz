@@ -1,18 +1,18 @@
-<img id="logo" src="/images/foodshare.png" />
+<section class="content posts">
+	<?php if(isset($user)): ?>
 
-<?php if(isset($user)): ?>
-<section class="content">
-		
 		<?php if(isset($success)): ?>
 	        <div class='success'>
-	            Thank you for signing up!
+	            Thank you for signing up! Please log in to get started.
 	        </div>
 	        <br>
 	    <?php endif; ?>
 	    
 
-	<p>This is <?=$user->first_name;?> <?=$user->last_name;?>'s profile.</p>
-	<p><?=$user->email;?></p>
+	<section class="profile">
+		<h2><?=$user->first_name;?>'s profile</h2>
+		<h3><?=$user->email;?></h3>
+	</section>
 
 	<?php foreach($posts as $post): ?>
 
@@ -21,16 +21,16 @@
 
 		<article>
 
-		    <h1><?=$post['first_name']?> <?=$post['last_name']?> posted:</h1>
+		    <h3><span class="name"><?=$post['first_name']?> <?=$post['last_name']?></span>:</h3>
 
 		    <p><?=$post['content']?></p>
 
-		    <time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
+		    <p class="time"><time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
 		        <?=Time::display($post['created'])?>
 		    </time>
+			</p>
 
 		</article>
-		<br />
 
 	<?php endforeach; ?>
 
@@ -41,6 +41,9 @@
 	<p>Please <a href="/users/login">log in</a> to view this page.</p>
 </section>
 <?php endif; ?>
+
+
+
 
 
 <!-- OR TO GET THE SAME RESULTS:

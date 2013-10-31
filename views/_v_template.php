@@ -8,8 +8,8 @@
 	<!-- Common CSS/JS -->
 	<link rel="stylesheet" href="/css/style.css" type="text/css">
 	<link href='http://fonts.googleapis.com/css?family=Asap:400,700,700italic,400italic' rel='stylesheet' type='text/css'>	
-	<link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700' rel='stylesheet' type='text/css'>
-
+	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
 					
 	<!-- Controller Specific JS/CSS -->
 	<?php if(isset($client_files_head)) echo $client_files_head; ?>
@@ -25,10 +25,10 @@
 			
 			<!-- If logged in -->
 			<?php if($user): ?>
-				<li><a href="/posts/add">Create a Post</a></li>
-				<li><a href="/posts/users">Follow Users</a></li>
-				<li><a href="/posts/index">Blogroll</a></li>
 				<li><a href="/users/profile">Profile</a></li>
+				<li><a href="/posts/add">Post</a></li>
+				<li><a href="/posts/index">Blogroll</a></li>
+				<li><a href="/posts/users">Follow</a></li>
 				<li><a href="/users/logout">Log Out</a></li>
 			<!-- If not logged in -->
 			<?php else: ?>
