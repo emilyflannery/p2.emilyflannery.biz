@@ -11,13 +11,13 @@
 		<input type='text' name='email' placeholder='Email Address'><br />
 		<input type='password' name='password' placeholder='Password'><br />
 
-		 <?php if(isset($error)): ?>
+		 <?php if(isset($_GET['error'])): ?>
 	        <div class='message error'>
 	            Login failed. Please double check your email and password.
 	        </div>
 	        <br>
 	    <?php endif; ?>
-	    <?php if(isset($success)): ?>
+	    <?php if(isset($_GET['success'])): ?>
 	        <div class='message success'>
 	            Thanks for signing up! Please log in to get started.
 	        </div>

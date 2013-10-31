@@ -10,7 +10,7 @@ class users_controller extends base_controller {
         $this->template->content = View::instance('v_index_index');
     }
 
-    public function signup() {
+    public function signup($success = NULL) {
 
         // Set up the view
         $this->template->content = View::instance('v_users_signup');
@@ -39,8 +39,8 @@ class users_controller extends base_controller {
         // Insert this user into the database
         $user_id = DB::instance(DB_NAME)->insert('users', $_POST);
 
-            // Send them back to the login page with a success message
-            Router::redirect("/users/login/success"); 
+        // Send them back to the login page with a success message
+        Router::redirect("/users/login/?success=true"); 
 
         
     }
@@ -53,6 +53,7 @@ class users_controller extends base_controller {
 
         # Pass data to the view
         $this->template->content->error = $error;
+        $this->template->content->success = $success;
 
         # Render template
         echo $this->template;
@@ -80,7 +81,7 @@ class users_controller extends base_controller {
         if(!$token) {
 
             # Send them back to the login page with an error message
-            Router::redirect("/users/login/error"); 
+            Router::redirect("/users/login/?error=true"); 
 
         # But if we did, login succeeded! 
         } 
@@ -141,8 +142,7 @@ public function profile($user_name = NULL) {
     $this->template->title = "Profile";
 
         # Query
-        $q = "SELECT
-                posts.content
+        $q = "SELECT *
             FROM posts 
             WHERE user_id = ".$this->user->user_id;
 

@@ -133,7 +133,6 @@ form input:focus {
 	text-align: center;
 	text-decoration: none;
 	text-transform: uppercase;
-	width: 80%;
 }
 
 .button a {
@@ -293,6 +292,11 @@ INDEX
 PROFILE
 ---------------------------------------------------------------------*/
 .profile h3 {
+	text-align: center;
+}
+
+.profile h4 {
+	margin-top: 2em;
 	text-align: center;
 }
 

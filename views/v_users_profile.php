@@ -1,27 +1,18 @@
-<section class="content posts">
+<section class="content posts profile">
 	<?php if(isset($user)): ?>
 
-		<?php if(isset($success)): ?>
-	        <div class='success'>
-	            Thank you for signing up! Please log in to get started.
-	        </div>
-	        <br>
-	    <?php endif; ?>
-	    
-
-	<section class="profile">
+	<section>
 		<h2><?=$user->first_name;?>'s profile</h2>
 		<h3><?=$user->email;?></h3>
 	</section>
 
+	<h4>My Posts:</h4>
 	<?php foreach($posts as $post): ?>
 
 			<!-- Get an array of posts from posts table, pass it to the view, and 
 			the view will loop through that and print out content for each post -->
 
 		<article>
-
-		    <h3><span class="name"><?=$post['first_name']?> <?=$post['last_name']?></span>:</h3>
 
 		    <p><?=$post['content']?></p>
 
