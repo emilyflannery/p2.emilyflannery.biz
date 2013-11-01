@@ -81,6 +81,28 @@ h4 a {
   text-decoration: none;
 }
 
+h5 {
+  color: #000;
+  font-family: 'Asap', Helvetica, Arial, sans-serif;
+  font-size: .8em;
+  font-weight: 500;
+  margin: 1em auto 4em auto;
+  text-align: center;
+  text-shadow: 1px 1px 1px #fff;
+  width: auto;
+}
+
+h5 a {
+  border: 1px solid #cecece;
+  color: #000;
+  text-decoration: none;
+  padding: .5em .8em;
+
+    &:hover {
+    background: #72e63a; 
+    }
+}
+
 form {
   font-family: 'Asap', sans-serif;
   font-size: 1em;
@@ -93,6 +115,7 @@ form textarea {
   background: none;
   border: none;
   border-bottom: 1px dotted #000;
+  color: #aaa;
   font-size: 1em;
   font-weight: 400;
   margin: 0 0 2em 0;
@@ -150,7 +173,7 @@ form input:focus {
   width: 100%;
 }
 
-.profile-pic {
+.avatar {
   background: url("/images/user_default.jpg") center center no-repeat;
   border-radius: 70px;
   display: block;

@@ -8,7 +8,7 @@
 
 		<article>
 			<!-- Print this user's name -->
-	    <div class="profile-pic"></div>
+	    <div class="avatar"></div>
 	    <h3><?=$user['first_name']?> <?=$user['last_name']?></h2>
 
 	    <!-- If there exists a connection with this user, show a unfollow link -->

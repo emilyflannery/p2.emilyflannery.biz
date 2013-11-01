@@ -6,6 +6,9 @@
 
 	<form method='POST' action='/users/p_signup'>  <!-- Naming convention = /controller/post or method -->
 
+		<div class="avatar"></div>
+		<input type='file' name='avatar' value='submit'><br />
+
 		<input type='text' name='first_name' placeholder='First Name'><br />
 		<input type='text' name='last_name' placeholder='Last Name'><br />
 		<input type='text' name='email' placeholder="Email Address"><br /> <!-- Query database to be sure email doesn't already exist -->

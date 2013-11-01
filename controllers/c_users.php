@@ -42,7 +42,6 @@ class users_controller extends base_controller {
         // Send them back to the login page with a success message
         Router::redirect("/users/login/?success=true"); 
 
-        
     }
 
     public function login($error = NULL, $success = NULL) {
@@ -127,43 +126,55 @@ class users_controller extends base_controller {
     }
 
 
-public function profile($user_name = NULL) {
+    public function profile($user_name = NULL) {
 
-    if(!$this->user) {
+        if(!$this->user) {
 
-        #Router::redirect('/');
-      
+            #Router::redirect('/');
+          
+        }
+
+        # Setup view
+        $this->template->content = View::instance('v_users_profile');
+
+        # Set page title
+        $this->template->title = "Profile";
+
+            # Query
+            $q = "SELECT *
+                FROM posts 
+                WHERE user_id = ".$this->user->user_id;
+
+        # Run the query, store the results in the variable $posts
+        $posts = DB::instance(DB_NAME)->select_rows($q);
+
+        # Pass data to the View
+        $this->template->content->posts = $posts;
+
+        # Use load_client_files to generate the links from the above array
+        $this->template->client_files_head = Utils::load_client_files($client_files_head);  
+        
+        # Use load_client_files to generate the links from the above array
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);  
+
+        # Pass information to the view fragment
+        $this->template->content->user_name = $user_name;
+
+        # Render View
+        echo $this->template;
+
     }
 
-    # Setup view
-    $this->template->content = View::instance('v_users_profile');
 
-    # Set page title
-    $this->template->title = "Profile";
+    public function profile_edit() {
 
-        # Query
-        $q = "SELECT *
-            FROM posts 
-            WHERE user_id = ".$this->user->user_id;
 
-    # Run the query, store the results in the variable $posts
-    $posts = DB::instance(DB_NAME)->select_rows($q);
+    }
 
-    # Pass data to the View
-    $this->template->content->posts = $posts;
+    public function p_profile_edit() {
 
-    # Use load_client_files to generate the links from the above array
-    $this->template->client_files_head = Utils::load_client_files($client_files_head);  
-    
-    # Use load_client_files to generate the links from the above array
-    $this->template->client_files_body = Utils::load_client_files($client_files_body);  
 
-    # Pass information to the view fragment
-    $this->template->content->user_name = $user_name;
-
-    # Render View
-    echo $this->template;
-
+        
     }
 
 } # end of the class
