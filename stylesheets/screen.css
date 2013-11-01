@@ -189,7 +189,7 @@ form input:focus {
 
 /* line 176, ../sass/screen.scss */
 .avatar {
-  background: url("/images/user_default.jpg") center center no-repeat;
+  /*background: url("/images/user_default.jpg") center center no-repeat;*/
   border-radius: 70px;
   display: block;
   margin: 0 auto 1em auto;

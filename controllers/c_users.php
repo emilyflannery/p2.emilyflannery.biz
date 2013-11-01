@@ -24,11 +24,16 @@ class users_controller extends base_controller {
     public function p_signup() {
 
         // Dump out the results of POST to see what the form submitted
-        # print_r($_POST);
+        #print_r($_POST);
 
         // Store time user was created to DB
         $_POST['created']   = Time::now();
         $_POST['modified']   = Time::now();
+
+        
+
+
+
 
         // Encrypt the password  
         $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);            
@@ -42,6 +47,7 @@ class users_controller extends base_controller {
         // Send them back to the login page with a success message
         Router::redirect("/users/login/?success=true"); 
 
+        
     }
 
     public function login($error = NULL, $success = NULL) {
@@ -159,6 +165,7 @@ class users_controller extends base_controller {
 
         # Pass information to the view fragment
         $this->template->content->user_name = $user_name;
+        $this->template->content->avatar = $avatar;
 
         # Render View
         echo $this->template;
