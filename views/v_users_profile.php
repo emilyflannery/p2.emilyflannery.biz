@@ -1,5 +1,4 @@
 <section class="content posts profile">
-	<?php if(isset($user)): ?>
 
 	<section>
 		<h2><?=$user->first_name;?>'s profile</h2>
@@ -29,12 +28,6 @@
 	<?php endforeach; ?>
 
 </section>
-
-<?php else: ?>
-<section class="content">
-	<p>Please <a href="/users/login">log in</a> to view this page.</p>
-</section>
-<?php endif; ?>
 
 
 

@@ -1,5 +1,7 @@
 <!-- Naming convention: v_users_signup = views_controller_method */ -->
-
+<!--<?php
+phpinfo();
+?>-->
 <img id="logo" src="/images/foodshare.png" />
 
 <section class="content login">

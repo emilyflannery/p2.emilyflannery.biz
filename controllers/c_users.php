@@ -24,7 +24,7 @@ class users_controller extends base_controller {
     public function p_signup() {
 
         // Dump out the results of POST to see what the form submitted
-        #print_r($_POST);
+        print_r($_POST);
 
         // Store time user was created to DB
         $_POST['created']   = Time::now();
@@ -32,8 +32,10 @@ class users_controller extends base_controller {
 
         
 
-
-
+        //IMAGE UPLOAD
+        Upload::upload($_FILES, "/uploads/avatars/", array("jpg", "jpeg", "gif", "png"), "avatar");
+        
+        
 
         // Encrypt the password  
         $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);            
@@ -134,11 +136,12 @@ class users_controller extends base_controller {
 
     public function profile($user_name = NULL) {
 
+        # If user is blank, they're not logged in; redirect them to the login page
         if(!$this->user) {
-
-            #Router::redirect('/');
-          
+            Router::redirect('/users/login');
         }
+
+        # If they weren't redirected away, continue:
 
         # Setup view
         $this->template->content = View::instance('v_users_profile');
