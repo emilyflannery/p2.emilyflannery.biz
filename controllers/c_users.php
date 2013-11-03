@@ -145,22 +145,6 @@ class users_controller extends base_controller {
 
         # If they weren't redirected away, continue:
 
-        
-                        
-            # Configure user's avatar (if they're logged in)
-                if($this->_user) {
-                    if(@!$this->user->avatar) 
-                        $this->user->avatar = "/uploads/avatars/user_default.jpg";
-                    else 
-                        $this->user->avatar = "/uploads/avatars/user".$this->_user->avatar;    
-                                                
-                    $this->user->avatar_small  = Utils::postfix("_200_200", $this->_user->avatar);
-                
-                }
-
-
-
-
 
         # Setup view
         $this->template->content = View::instance('v_users_profile');
@@ -180,13 +164,14 @@ class users_controller extends base_controller {
         $this->template->content->posts = $posts;
 
         # Use load_client_files to generate the links from the above array
-        #$this->template->client_files_head = Utils::load_client_files($client_files_head);  
+        $this->template->client_files_head = Utils::load_client_files($client_files_head);  
         
         # Use load_client_files to generate the links from the above array
-        #$this->template->client_files_body = Utils::load_client_files($client_files_body);  
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);  
 
         # Pass information to the view fragment
         $this->template->content->user_name = $user_name;
+        $this->template->content->avatar = $avatar;
 
         # Render View
         echo $this->template;
