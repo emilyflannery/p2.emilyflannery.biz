@@ -24,7 +24,7 @@ class users_controller extends base_controller {
     public function p_signup() {
 
         // Dump out the results of POST to see what the form submitted
-        print_r($_POST);
+        #print_r($_POST);
 
         // Store time user was created to DB
         $_POST['created']   = Time::now();
@@ -33,9 +33,11 @@ class users_controller extends base_controller {
         
 
         //IMAGE UPLOAD
-        Upload::upload($_FILES, "/uploads/avatars/", array("jpg", "jpeg", "gif", "png"), "avatar");
-        
-        
+        Upload::upload($_FILES, "/uploads/avatars/", array("JPG", "JPEG", "jpg", "jpeg", "gif", "GIF", "png", "PNG"), $this->user->user_id);
+    
+
+
+
 
         // Encrypt the password  
         $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);            
@@ -143,6 +145,23 @@ class users_controller extends base_controller {
 
         # If they weren't redirected away, continue:
 
+        
+                        
+            # Configure user's avatar (if they're logged in)
+                if($this->_user) {
+                    if(@!$this->user->avatar) 
+                        $this->user->avatar = "/uploads/avatars/user_default.jpg";
+                    else 
+                        $this->user->avatar = "/uploads/avatars/user".$this->_user->avatar;    
+                                                
+                    $this->user->avatar_small  = Utils::postfix("_200_200", $this->_user->avatar);
+                
+                }
+
+
+
+
+
         # Setup view
         $this->template->content = View::instance('v_users_profile');
 
@@ -161,14 +180,13 @@ class users_controller extends base_controller {
         $this->template->content->posts = $posts;
 
         # Use load_client_files to generate the links from the above array
-        $this->template->client_files_head = Utils::load_client_files($client_files_head);  
+        #$this->template->client_files_head = Utils::load_client_files($client_files_head);  
         
         # Use load_client_files to generate the links from the above array
-        $this->template->client_files_body = Utils::load_client_files($client_files_body);  
+        #$this->template->client_files_body = Utils::load_client_files($client_files_body);  
 
         # Pass information to the view fragment
         $this->template->content->user_name = $user_name;
-        $this->template->content->avatar = $avatar;
 
         # Render View
         echo $this->template;
@@ -177,12 +195,30 @@ class users_controller extends base_controller {
 
 
     public function profile_edit() {
+        // Set up the view
+        $this->template->content = View::instance('v_users_profile_edit');
+        $this->template->title   = "Edit Profile";
 
+        // Render the view
+        echo $this->template;
 
     }
 
+
     public function p_profile_edit() {
 
+
+        $q = "UPDATE    users
+            SET         first_name = '".$_REQUEST['first_name']."',
+                        last_name = '".$_REQUEST['last_name']."',
+                        email = '".$_REQUEST['email']."'
+            WHERE       email = '".$this->user->email."'";
+
+        DB::instance(DB_NAME)->query($q);
+        Router::redirect("/users/profile");
+
+        // Send them back to the login page with a success message
+        #Router::redirect("/users/profile"); 
 
         
     }

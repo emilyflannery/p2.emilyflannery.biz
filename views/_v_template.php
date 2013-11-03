@@ -10,6 +10,12 @@
 	<link href='http://fonts.googleapis.com/css?family=Asap:400,700,700italic,400italic' rel='stylesheet' type='text/css'>	
 	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
+	
+	<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script> 
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	
+	<link href="/scripts/bootstrap-editable-1.5.0/css/bootstrap-editable.css" rel="stylesheet">
+	<script src="/scripts/bootstrap-editable-1.5.0/js/bootstrap-editable.js"></script>
 					
 	<!-- Controller Specific JS/CSS -->
 	<?php if(isset($client_files_head)) echo $client_files_head; ?>
