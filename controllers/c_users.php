@@ -24,7 +24,7 @@ class users_controller extends base_controller {
     public function p_signup() {
 
         // Dump out the results of POST to see what the form submitted
-        #print_r($_POST);
+        
 
         // Store time user was created to DB
         $_POST['created']   = Time::now();
@@ -35,9 +35,8 @@ class users_controller extends base_controller {
         //IMAGE UPLOAD
         Upload::upload($_FILES, "/uploads/avatars/", array("JPG", "JPEG", "jpg", "jpeg", "gif", "GIF", "png", "PNG"), $this->user->user_id);
     
-
-
-
+        #print_r($_FILES);
+      
 
         // Encrypt the password  
         $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);            
@@ -167,7 +166,7 @@ class users_controller extends base_controller {
         $this->template->client_files_head = Utils::load_client_files($client_files_head);  
         
         # Use load_client_files to generate the links from the above array
-        $this->template->client_files_body = Utils::load_client_files($client_files_body);  
+        #$this->template->client_files_body = Utils::load_client_files($client_files_body);  
 
         # Pass information to the view fragment
         $this->template->content->user_name = $user_name;

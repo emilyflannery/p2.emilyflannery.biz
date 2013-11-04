@@ -4,9 +4,8 @@
 <section class="content">
 	<h2>Sign Up</h2>
 
-	<form method='POST' action='/users/p_signup'>  <!-- Naming convention = /controller/post or method -->
+	<form method='POST' enctype="multipart/form-data" action='/users/p_signup'>  <!-- Naming convention = /controller/post or method -->
 
-		<div class='avatar'></div>
 		<input type='file' name='avatar' value='file'><br />
 
 		<input type='text' name='first_name' placeholder='First Name'><br />
