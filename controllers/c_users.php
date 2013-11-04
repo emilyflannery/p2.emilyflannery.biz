@@ -43,8 +43,8 @@ class users_controller extends base_controller {
 
 
         //IMAGE UPLOAD
-        Upload::upload($_FILES, "/uploads/avatars/", array("JPG", "JPEG", "jpg", "jpeg", "gif", "GIF", "png", "PNG"), "avatar");
-    
+        Upload::upload($_FILES, "/uploads/avatars/", array("JPG", "JPEG", "jpg", "jpeg", "gif", "GIF", "png", "PNG"), $this->$user_id->avatar);
+        
         $path = "/uploads/avatars/";
         $filename = $_FILES['avatar']['name']; // RETURNS original file name + original extension
         $extension = substr($filename, strrpos($filename, '.')); // .jpg or .png
