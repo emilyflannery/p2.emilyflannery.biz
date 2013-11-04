@@ -29,13 +29,6 @@ class users_controller extends base_controller {
         // Store time user was created to DB
         $_POST['created']   = Time::now();
         $_POST['modified']   = Time::now();
-
-        
-
-        //IMAGE UPLOAD
-        Upload::upload($_FILES, "/uploads/avatars/", array("JPG", "JPEG", "jpg", "jpeg", "gif", "GIF", "png", "PNG"), $this->user->user_id);
-    
-        #print_r($_FILES);
       
 
         // Encrypt the password  
@@ -46,6 +39,22 @@ class users_controller extends base_controller {
 
         // Insert this user into the database
         $user_id = DB::instance(DB_NAME)->insert('users', $_POST);
+
+
+
+        //IMAGE UPLOAD
+        Upload::upload($_FILES, "/uploads/avatars/", array("JPG", "JPEG", "jpg", "jpeg", "gif", "GIF", "png", "PNG"), "avatar");
+    
+        $path = "/uploads/avatars/";
+        $filename = $_FILES['avatar']['name']; // RETURNS original file name + original extension
+        $extension = substr($filename, strrpos($filename, '.')); // .jpg or .png
+        $avatar = $path."avatar".$extension; // RETURNS /uploads/avatars/avatar.jpg or .png or .gif
+
+        #print_r($avatar);
+
+
+
+
 
         // Send them back to the login page with a success message
         Router::redirect("/users/login/?success=true"); 

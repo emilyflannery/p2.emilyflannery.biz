@@ -3,7 +3,7 @@
 	<section>
 
 	    <h2><?=$user->first_name;?>'s profile</h2>
-		<div class="avatar" style="background: url('<?=$user->avatar; ?>') center center no-repeat;"></div>
+		<div class="avatar" style="background: url('<?=$avatar; ?>') center center no-repeat;"></div>
 		<h3><?=$user->email;?></h3>
 		<h5><a href="/users/profile_edit">Update Profile</a></h5>
 
