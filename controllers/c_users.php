@@ -10,7 +10,7 @@ class users_controller extends base_controller {
         $this->template->content = View::instance('v_index_index');
     }
 
-    public function signup($success = NULL) {
+    public function signup() {
 
         // Set up the view
         $this->template->content = View::instance('v_users_signup');
@@ -42,18 +42,16 @@ class users_controller extends base_controller {
 
 
 
-        //IMAGE UPLOAD
-        Upload::upload($_FILES, "/uploads/avatars/", array("JPG", "JPEG", "jpg", "jpeg", "gif", "GIF", "png", "PNG"), "avatar");
+        //Image Upload
+        Upload::upload($_FILES, "/uploads/avatars/", array("JPG", "JPEG", "jpg", "jpeg", "gif", "GIF", "png", "PNG"), $user_id);
         
-        $path = "/uploads/avatars/";
-        $filename = $_FILES['avatar']['name']; // RETURNS original file name + original extension
-        $extension = substr($filename, strrpos($filename, '.')); // .jpg or .png
-        $avatar = $path."avatar".$extension; // RETURNS /uploads/avatars/avatar.jpg or .png or .gif
+        $filename = $_FILES['avatar']['name']; // original filename (i.e. picture.jpg)
+        $extension = substr($filename, strrpos($filename, '.')); // filename format extension (i.e. .jpg)
+        $avatar = $user_id.$extension; // user id + .jpg or .png or .gif (i.e. 26.png)
 
-        #print_r($avatar);
-
-
-
+        // Add Image to DB in "avatar" column
+        $data = Array("avatar" => $avatar);
+        DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = '".$user_id."'"); 
 
 
         // Send them back to the login page with a success message
@@ -179,7 +177,6 @@ class users_controller extends base_controller {
 
         # Pass information to the view fragment
         $this->template->content->user_name = $user_name;
-        $this->template->content->avatar = $avatar;
 
         # Render View
         echo $this->template;
