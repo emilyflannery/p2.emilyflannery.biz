@@ -36,15 +36,18 @@ time, mark, audio, video {
 }
 
 /*--------------------------------------------------------------------
+VARIABLES
+---------------------------------------------------------------------*/
+/*--------------------------------------------------------------------
 GLOBAL
 ---------------------------------------------------------------------*/
-/* line 40, ../sass/screen.scss */
+/* line 47, ../sass/screen.scss */
 body {
   font-family: "Asap", sans-serif;
   background: #efefef;
 }
 
-/* line 45, ../sass/screen.scss */
+/* line 52, ../sass/screen.scss */
 h2 {
   border-bottom: 1px solid black;
   font-family: "Playfair Display", serif;
@@ -57,23 +60,25 @@ h2 {
   text-transform: uppercase;
 }
 
-/* line 57, ../sass/screen.scss */
+/* line 64, ../sass/screen.scss */
 h3 {
-  color: #000;
+  color: black;
   font-family: "Playfair Display", serif;
   font-size: 1em;
   font-weight: 700;
+  line-height: 2em;
   padding-bottom: .8em;
   text-shadow: 1px 1px 2px white;
 }
 
-/* line 66, ../sass/screen.scss */
+/* line 74, ../sass/screen.scss */
 h4 {
-  color: #72e63a;
+  color: #5acd23;
   font-size: .66em;
   font-family: "Asap", Helvetica, Arial, sans-serif;
   font-weight: 700;
   letter-spacing: .2em;
+  line-height: 2em;
   margin: 1em auto;
   text-align: left;
   text-shadow: 1px 1px 1px white;
@@ -81,37 +86,38 @@ h4 {
   width: 100%;
 }
 
-/* line 79, ../sass/screen.scss */
+/* line 88, ../sass/screen.scss */
 h4 a {
-  color: #72e63a;
+  color: #5acd23;
   text-decoration: none;
 }
 
-/* line 84, ../sass/screen.scss */
+/* line 93, ../sass/screen.scss */
 h5 {
-  color: #000;
+  color: black;
   font-family: "Asap", Helvetica, Arial, sans-serif;
   font-size: .8em;
   font-weight: 500;
+  line-height: 2em;
   margin: 1em auto 4em auto;
   text-align: center;
   text-shadow: 1px 1px 1px white;
   width: auto;
 }
 
-/* line 95, ../sass/screen.scss */
+/* line 105, ../sass/screen.scss */
 h5 a {
   border: 1px solid #cecece;
-  color: #000;
+  color: black;
   text-decoration: none;
   padding: 0.5em 0.8em;
 }
-/* line 101, ../sass/screen.scss */
+/* line 111, ../sass/screen.scss */
 h5 a:hover {
-  background: #72e63a;
+  background: #5acd23;
 }
 
-/* line 106, ../sass/screen.scss */
+/* line 116, ../sass/screen.scss */
 form {
   font-family: "Asap", sans-serif;
   font-size: 1em;
@@ -119,7 +125,7 @@ form {
   margin-top: 3em;
 }
 
-/* line 114, ../sass/screen.scss */
+/* line 124, ../sass/screen.scss */
 form input,
 form textarea {
   background: none;
@@ -133,15 +139,25 @@ form textarea {
   width: 100%;
 }
 
-/* line 126, ../sass/screen.scss */
+/* line 136, ../sass/screen.scss */
 form input:focus {
   outline: none;
 }
 
-/* line 130, ../sass/screen.scss */
+/* line 140, ../sass/screen.scss */
+.left {
+  float: left;
+}
+
+/* line 144, ../sass/screen.scss */
+.right {
+  float: right;
+}
+
+/* line 148, ../sass/screen.scss */
 .button {
   border-radius: 5em;
-  background: #72e63a;
+  background: #5acd23;
   border-radius: 5em;
   display: block;
   font-family: "Asap", serif;
@@ -154,10 +170,10 @@ form input:focus {
   height: 5em;
 }
 
-/* line 145, ../sass/screen.scss */
+/* line 163, ../sass/screen.scss */
 .button input {
   border: none;
-  color: #000;
+  color: black;
   display: block;
   font-size: .8em;
   font-weight: 700;
@@ -171,10 +187,10 @@ form input:focus {
   text-transform: uppercase;
 }
 
-/* line 161, ../sass/screen.scss */
+/* line 179, ../sass/screen.scss */
 .button a {
   border: none;
-  color: #000;
+  color: black;
   font-size: .8em;
   font-weight: 700;
   line-height: 1.6em;
@@ -187,7 +203,7 @@ form input:focus {
   width: 100%;
 }
 
-/* line 176, ../sass/screen.scss */
+/* line 194, ../sass/screen.scss */
 .avatar {
   background: url("/uploads/avatars/user_default.jpg") center center no-repeat;
   border-radius: 70px;
@@ -197,7 +213,7 @@ form input:focus {
   height: 70px;
 }
 
-/* line 185, ../sass/screen.scss */
+/* line 203, ../sass/screen.scss */
 #logo {
   display: block;
   height: auto;
@@ -207,17 +223,17 @@ form input:focus {
   width: 40%;
 }
 
-/* line 194, ../sass/screen.scss */
+/* line 212, ../sass/screen.scss */
 nav {
   position: absolute;
   top: 0;
   left: 0;
 }
-/* line 199, ../sass/screen.scss */
+/* line 217, ../sass/screen.scss */
 nav ul {
   padding: 1em;
 }
-/* line 202, ../sass/screen.scss */
+/* line 220, ../sass/screen.scss */
 nav ul li {
   color: #efefef;
   background: #111;
@@ -232,15 +248,15 @@ nav ul li {
   width: 5em;
   height: 5em;
 }
-/* line 216, ../sass/screen.scss */
+/* line 234, ../sass/screen.scss */
 nav ul li:hover {
-  background: #72e63a;
+  background: #5acd23;
 }
-/* line 219, ../sass/screen.scss */
+/* line 237, ../sass/screen.scss */
 nav ul li:hover a {
   color: #111;
 }
-/* line 225, ../sass/screen.scss */
+/* line 243, ../sass/screen.scss */
 nav ul li a:link,
 nav ul li a:visited {
   color: #efefef;
@@ -251,12 +267,12 @@ nav ul li a:visited {
   text-decoration: none;
   vertical-align: middle;
 }
-/* line 235, ../sass/screen.scss */
+/* line 253, ../sass/screen.scss */
 nav ul li a:hover {
   color: #111;
 }
 
-/* line 242, ../sass/screen.scss */
+/* line 260, ../sass/screen.scss */
 .content {
   background: #efefef;
   color: #111;
@@ -268,36 +284,36 @@ nav ul li a:hover {
 /*--------------------------------------------------------------------
 LOGIN
 ---------------------------------------------------------------------*/
-/* line 253, ../sass/screen.scss */
+/* line 271, ../sass/screen.scss */
 .content.login {
   margin-top: 2em;
 }
-/* line 256, ../sass/screen.scss */
+/* line 274, ../sass/screen.scss */
 .content.login .message {
   font-size: 1em;
   padding: 1em 0;
 }
 
-/* line 263, ../sass/screen.scss */
+/* line 281, ../sass/screen.scss */
 .error {
   color: red;
 }
 
-/* line 267, ../sass/screen.scss */
+/* line 285, ../sass/screen.scss */
 .success {
-  color: #72e63a;
+  color: #5acd23;
 }
 
 /*--------------------------------------------------------------------
 INDEX
 ---------------------------------------------------------------------*/
-/* line 275, ../sass/screen.scss */
+/* line 293, ../sass/screen.scss */
 .content.member,
 .content.visitor {
   margin: 2em auto;
 }
 
-/* line 279, ../sass/screen.scss */
+/* line 297, ../sass/screen.scss */
 .member h2 {
   border: none;
   font-family: "Playfair Display", Helvetica, Arial, sans-serif;
@@ -312,13 +328,13 @@ INDEX
   width: auto;
 }
 
-/* line 293, ../sass/screen.scss */
+/* line 311, ../sass/screen.scss */
 .visitor h2 {
   border-bottom: none;
   padding: 0;
 }
 
-/* line 298, ../sass/screen.scss */
+/* line 316, ../sass/screen.scss */
 #welcome {
   border-top: 1px solid black;
   border-bottom: 1px solid black;
@@ -333,20 +349,28 @@ INDEX
   width: 120%;
 }
 
-/* line 311, ../sass/screen.scss */
+/* line 329, ../sass/screen.scss */
 .visitor #welcome {
   font-size: 1.5em;
   line-height: 1.5em;
 }
 
 /*--------------------------------------------------------------------
+PROMPTS
+---------------------------------------------------------------------*/
+/* line 337, ../sass/screen.scss */
+.prompt {
+  text-align: center;
+}
+
+/*--------------------------------------------------------------------
 PROFILE
 ---------------------------------------------------------------------*/
-/* line 321, ../sass/screen.scss */
+/* line 346, ../sass/screen.scss */
 .profile h3 {
   text-align: center;
 }
-/* line 325, ../sass/screen.scss */
+/* line 350, ../sass/screen.scss */
 .profile h4 {
   margin-top: 2em;
   text-align: center;
@@ -355,7 +379,7 @@ PROFILE
 /*--------------------------------------------------------------------
 POSTS
 ---------------------------------------------------------------------*/
-/* line 334, ../sass/screen.scss */
+/* line 359, ../sass/screen.scss */
 .new-post textarea {
   background: #fff;
   border: 1px dotted #cdcdcd;
@@ -368,13 +392,13 @@ POSTS
 /*--------------------------------------------------------------------
 POSTS
 ---------------------------------------------------------------------*/
-/* line 349, ../sass/screen.scss */
+/* line 374, ../sass/screen.scss */
 .posts article {
   border-bottom: 1px dotted #cdcdcd;
   margin: 1.5em 0 0 0;
   padding-bottom: 2em;
 }
-/* line 355, ../sass/screen.scss */
+/* line 380, ../sass/screen.scss */
 .posts p {
   background: #fff;
   border: 1px dotted #cdcdcd;
@@ -382,13 +406,13 @@ POSTS
   font-size: .8em;
   padding: 1em;
 }
-/* line 363, ../sass/screen.scss */
-.posts .time {
+/* line 388, ../sass/screen.scss */
+.posts .meta {
   background: none;
   border: none;
 }
 
-/* line 370, ../sass/screen.scss */
+/* line 395, ../sass/screen.scss */
 footer {
   background: #111;
   position: fixed;
@@ -396,7 +420,7 @@ footer {
   left: 0;
   width: 100%;
 }
-/* line 377, ../sass/screen.scss */
+/* line 402, ../sass/screen.scss */
 footer img {
   height: auto;
   padding: 0.5em;
@@ -406,14 +430,14 @@ footer img {
 /*--------------------------------------------------------------------
 FOLLOW
 ---------------------------------------------------------------------*/
-/* line 389, ../sass/screen.scss */
+/* line 414, ../sass/screen.scss */
 .follow article {
   border-bottom: 1px dotted #cdcdcd;
   margin-bottom: 1em;
   padding-bottom: 1em;
   text-align: center;
 }
-/* line 396, ../sass/screen.scss */
+/* line 421, ../sass/screen.scss */
 .follow h4 {
   margin-top: .5em;
   text-align: center;

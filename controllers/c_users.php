@@ -4,6 +4,10 @@ class users_controller extends base_controller {
     public function __construct() {
         # Call the base constructor
         parent::__construct();
+
+        if(!$this->user) {
+            Router::redirect("/index/members_only");
+        }
     } 
 
     public function index() {
@@ -85,10 +89,10 @@ class users_controller extends base_controller {
 
         # Search the db for this email and password
         # Retrieve the token if it's available
-        $q = "SELECT token 
-            FROM users 
-            WHERE email = '".$_POST['email']."' 
-            AND password = '".$_POST['password']."'";
+        $q = "SELECT    token 
+            FROM        users 
+            WHERE       email = '".$_POST['email']."' 
+            AND         password = '".$_POST['password']."'";
 
         $token = DB::instance(DB_NAME)->select_field($q);
 
@@ -160,8 +164,8 @@ class users_controller extends base_controller {
 
             # Query
             $q = "SELECT *
-                FROM posts 
-                WHERE user_id = ".$this->user->user_id;
+                FROM         posts 
+                WHERE        user_id = ".$this->user->user_id;
 
         # Run the query, store the results in the variable $posts
         $posts = DB::instance(DB_NAME)->select_rows($q);

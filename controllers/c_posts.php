@@ -8,7 +8,7 @@ class posts_controller extends base_controller {
 
 		// Make sure user is logged in if they want to use anything in this controller
         if(!$this->user) {
-            die("Members only. <a href='/users/login'>Login</a>");
+            Router::redirect("/index/members_only");
         }
 
     } 
@@ -42,6 +42,28 @@ class posts_controller extends base_controller {
 
     }
 
+	public function delete($post_id) {
+
+        # Setup view
+        $this->template->content = View::instance('v_posts_delete');
+        $this->template->title   = "Delete Post Confirmation";
+        $this->template->content->post_id = $post_id;
+
+        # Render template
+        echo $this->template;
+
+    }
+
+	public function p_delete($post_id) {
+
+        $where_condition = 'WHERE post_id = '.$post_id;
+        DB::instance(DB_NAME)->delete('posts', $where_condition);
+
+    	# Send them back
+		Router::redirect("/users/profile");
+
+    }
+
 	public function index() {
 
 	    # Set up the View
@@ -49,19 +71,19 @@ class posts_controller extends base_controller {
 	    $this->template->title   = "All Posts";
 
 	    # Query
-	    $q = 'SELECT 
-	            posts.content,
-	            posts.created,
-	            posts.user_id AS post_user_id,
-	            users_users.user_id AS follower_id,
-	            users.first_name,
-	            users.last_name
-	        FROM posts
-	        INNER JOIN users_users 
-	            ON posts.user_id = users_users.user_id_followed
-	        INNER JOIN users 
-	            ON posts.user_id = users.user_id
-	        WHERE users_users.user_id = '.$this->user->user_id;
+	    $q = "SELECT 
+	            		posts.content,
+	            		posts.created,
+	            		posts.user_id AS post_user_id,
+	            		users_users.user_id AS follower_id,
+	            		users.first_name,
+	            		users.last_name
+	        FROM        posts
+	        INNER JOIN  users_users 
+	            ON 		posts.user_id = users_users.user_id_followed
+	        INNER JOIN 	users 
+	            ON 		posts.user_id = users.user_id
+	        WHERE 		users_users.user_id = ".$this->user->user_id;
 
 	    # Run the query, store the results in the variable $posts
 	    $posts = DB::instance(DB_NAME)->select_rows($q);

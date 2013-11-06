@@ -1,25 +1,33 @@
 <section class="content posts">
 	<h2>Blogroll</h2>
 
-	<?php foreach($posts as $post): ?>
+		<?php if($posts): ?>
 
-			<!-- Get an array of posts from posts table, pass it to the view, and 
-			the view will loop through that and print out content for each post -->
+			<?php foreach($posts as $post): ?>
 
-		<article>
+					<!-- Get an array of posts from posts table, pass it to the view, and 
+					the view will loop through that and print out content for each post -->
 
-		    <h3><span class="name"><?=$post['first_name']?> <?=$post['last_name']?></span>:</h3>
+				<article>
 
-		    <p><?=$post['content']?></p>
+				    <h3><span class="name"><?=$post['first_name']?> <?=$post['last_name']?></span>:</h3>
 
-		    <h4 class="time"><time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
-		        <?=Time::display($post['created'])?>
-		    </time>
-			</h4>
+				    <p><?=$post['content']?></p>
 
-		</article>
-		<br />
+				    <h4 class="meta"><time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
+				        <?=Time::display($post['created'])?>
+				    </time>
+					</h4>
 
-	<?php endforeach; ?>
+				</article>
+				<br />
+
+			<?php endforeach; ?>
+
+		<?php else: ?>
+
+			<h4 class="prompt"><a href="/posts/users" title="Follow Users">Click here to see what other users are up to!</a></h4>
+
+		<?php endif; ?>
 
 </section>

@@ -3,30 +3,44 @@
 	<section>
 
 	    <h2><?=$user->first_name;?>'s profile</h2>
-		<div class="avatar" style="background: url('<?=$user->avatar;?>') center center no-repeat;"></div>
+		
+		<?php if($user): ?>
+			<div class="avatar" style="background: url('<?=$user->avatar;?>') center center no-repeat;"></div>
+		<?php else: ?>
+			<div class="avatar" style="background: url('/uploads/avatars/user_default.jpg') center center no-repeat;"></div>
+		<?php endif; ?>
+
 		<h3><?=$user->email;?></h3>
 		<h5><a href="/users/profile_edit">Update Profile</a></h5>
 
 	</section>
 
-	<h4>My Posts:</h4>
-	<?php foreach($posts as $post): ?>
+		<?php if($posts): ?>
+			<h4>My Posts:</h4>
+			<?php foreach($posts as $post): ?>
 
-			<!-- Get an array of posts from posts table, pass it to the view, and 
-			the view will loop through that and print out content for each post -->
+					<!-- Get an array of posts from posts table, pass it to the view, and 
+					the view will loop through that and print out content for each post -->
 
-		<article>
+				<article>
 
-		    <p><?=$post['content']?></p>
+				    <p><?=$post['content']?></p>
 
-		    <p class="time"><time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
-		        <?=Time::display($post['created'])?>
-		    </time>
-			</p>
+				    <p class="meta left"><time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
+				        <?=Time::display($post['created'])?>
+				    </meta>
+					</p>
 
-		</article>
+					<p class="meta right"><a href="/posts/delete">Delete</a></p>
 
-	<?php endforeach; ?>
+				</article>
+
+			<?php endforeach; ?>
+
+		<?php else: ?>
+			<h4><a href="/posts/add" title="Add a Post">You have no posts. Click here to add one!</a></h4>
+		<?php endif; ?>
+
 
 </section>
 
