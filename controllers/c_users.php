@@ -5,9 +5,6 @@ class users_controller extends base_controller {
         # Call the base constructor
         parent::__construct();
 
-        if(!$this->user) {
-            Router::redirect("/index/members_only");
-        }
     } 
 
     public function index() {
