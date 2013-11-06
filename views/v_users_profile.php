@@ -4,12 +4,8 @@
 
 	    <h2><?=$user->first_name;?>'s profile</h2>
 		
-		<?php if($avatar): ?>
-			<div class="avatar" style="background: url('<?=$user->avatar;?>') center center no-repeat;"></div>
-		<?php else: ?>
-			<div class="avatar" style="background: url('/uploads/avatars/user_default.jpg') center center no-repeat;"></div>
-		<?php endif; ?>
-
+		<div class="avatar" style="background: url('<?=$user->avatar;?>') center center no-repeat;"></div>
+	
 		<h3><?=$user->email;?></h3>
 		<h5><a href="/users/profile_edit">Update Profile</a></h5>
 
