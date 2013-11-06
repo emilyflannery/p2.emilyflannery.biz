@@ -4,7 +4,7 @@
 
 	    <h2><?=$user->first_name;?>'s profile</h2>
 		
-		<?php if($user): ?>
+		<?php if($avatar): ?>
 			<div class="avatar" style="background: url('<?=$user->avatar;?>') center center no-repeat;"></div>
 		<?php else: ?>
 			<div class="avatar" style="background: url('/uploads/avatars/user_default.jpg') center center no-repeat;"></div>

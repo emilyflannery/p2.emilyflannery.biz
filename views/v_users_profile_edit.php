@@ -4,7 +4,11 @@
 	<h2>Edit Profile</h2>
 	<form method='POST' action='/users/p_profile_edit'>  <!-- Naming convention = /controller/post or method -->
 
-		<div class="avatar" style="background: url('<?=$user->avatar;?>') center center no-repeat;"></div>
+		<?php if($avatar): ?>
+			<div class="avatar" style="background: url('<?=$user->avatar;?>') center center no-repeat;"></div>
+		<?php else: ?>
+			<div class="avatar" style="background: url('/uploads/avatars/user_default.jpg') center center no-repeat;"></div>
+		<?php endif; ?>
 
 		<a href="#" id="first_name" data-type="text" data-pk="1" data-url="/users/p_profile_edit" data-title="">
 			<input type='text' name='first_name' placeholder='<?=$user->first_name;?>'><br />

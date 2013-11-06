@@ -113,6 +113,10 @@ h5 a {
     }
 }
 
+a {
+  color: #23a3cd;
+}
+
 form {
   font-family: 'Asap', sans-serif;
   font-size: 1em;
@@ -196,6 +200,7 @@ form input:focus {
   border-radius: 70px;
   display: block;
   margin: 0 auto 1em auto;
+  max-width: 70px;
   width: 70px;
   height: 70px;
 }

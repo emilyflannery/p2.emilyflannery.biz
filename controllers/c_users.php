@@ -4,7 +4,6 @@ class users_controller extends base_controller {
     public function __construct() {
         # Call the base constructor
         parent::__construct();
-
     } 
 
     public function index() {
@@ -43,7 +42,7 @@ class users_controller extends base_controller {
 
 
 
-        // Image Upload
+        //Image Upload
         Upload::upload($_FILES, "/uploads/avatars/", array("JPG", "JPEG", "jpg", "jpeg", "gif", "GIF", "png", "PNG"), $user_id);
         
         $filename = $_FILES['avatar']['name']; // original filename (i.e. picture.jpg)
@@ -147,7 +146,7 @@ class users_controller extends base_controller {
 
         # If user is blank, they're not logged in; redirect them to the login page
         if(!$this->user) {
-            Router::redirect('/users/login');
+            Router::redirect('/index/members_only');
         }
 
         # If they weren't redirected away, continue:
@@ -207,9 +206,6 @@ class users_controller extends base_controller {
 
         DB::instance(DB_NAME)->query($q);
         Router::redirect("/users/profile");
-
-        // Send them back to the login page with a success message
-        #Router::redirect("/users/profile"); 
 
         
     }
