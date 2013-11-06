@@ -31,7 +31,7 @@
 				    </meta>
 					</p>
 
-					<p class="meta right"><a href="/posts/delete/">Delete</a></p>
+					<p class="meta right"><a href="/posts/delete/<?=$post['post_id']?>">Delete</a></p>
 
 				</article>
 

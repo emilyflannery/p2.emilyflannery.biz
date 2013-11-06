@@ -1,7 +1,7 @@
 <section class="content posts">
 	<h2>Blogroll</h2>
 
-		<?php if($posts): ?>
+		<?php if($connections): ?>
 
 			<?php foreach($posts as $post): ?>
 

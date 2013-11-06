@@ -43,7 +43,7 @@ class users_controller extends base_controller {
 
 
 
-        //Image Upload
+        // Image Upload
         Upload::upload($_FILES, "/uploads/avatars/", array("JPG", "JPEG", "jpg", "jpeg", "gif", "GIF", "png", "PNG"), $user_id);
         
         $filename = $_FILES['avatar']['name']; // original filename (i.e. picture.jpg)
